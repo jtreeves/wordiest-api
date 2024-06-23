@@ -1,0 +1,28 @@
+name: Ask a Question
+description: Create a new ticket to ask a question
+labels: ['question']
+assignees:
+  - jtreeves
+body:
+  - type: markdown
+    attributes:
+      value: 'Please read and follow the instructions below before submitting an issue:'
+  - type: markdown
+    attributes:
+      value: |
+        - Read all our documentation, especially the [README](https://github.com/jtreeves/wordiest)
+        - Ensure the question has not already been [asked](https://github.com/jtreeves/wordiest/labels/question)
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What topic would you like to discuss?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Can you provide any additional context to help us understand your question?
+    validations:
+      required: false
