@@ -11,5 +11,4 @@
 - [ ] Code linted
 - [ ] Tests pass (and new ones added if applicable)
 - [ ] Builds successfully
-- [ ] App functions properly
-- [ ] Screenshots provided (if applicable)
+- [ ] API functions properly

@@ -1,17 +1,17 @@
 name: Bug Report
 description: Create a new ticket for a bug
-labels: ['bug']
+labels: ["bug"]
 assignees:
   - jtreeves
 body:
   - type: markdown
     attributes:
-      value: 'Please read and follow the instructions below before submitting an issue:'
+      value: "Please read and follow the instructions below before submitting an issue:"
   - type: markdown
     attributes:
       value: |
-        - Read all our documentation, especially the [README](https://github.com/jtreeves/wordiest)
-        - Ensure the bug has not already been [reported](https://github.com/jtreeves/wordiest/labels/bug)
+        - Read all our documentation, especially the [README](https://github.com/jtreeves/wordiest-api)
+        - Ensure the bug has not already been [reported](https://github.com/jtreeves/wordiest-api/labels/bug)
   - type: textarea
     id: problem
     attributes:
