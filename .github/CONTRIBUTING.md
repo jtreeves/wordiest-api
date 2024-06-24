@@ -15,6 +15,8 @@
 - Go (v1.22+)
 - Echo (v4.12+)
 
+Install the appropriate Go extensions for VS Code or a comparable IDE.
+
 ### Installation
 
 1.  Fork and clone the repository

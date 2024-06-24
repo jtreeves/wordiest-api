@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["labstack"],
+  "cSpell.words": ["Errorf", "labstack"],
   "[go]": {
     "editor.insertSpaces": true,
     "editor.formatOnSave": true,
