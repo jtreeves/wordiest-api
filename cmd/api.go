@@ -3,8 +3,7 @@ package cmd
 import (
 	"net/http"
 
-	_ "github.com/jtreeves/wordiest-api/docs" // Update this path to match your module name
-
+	_ "github.com/jtreeves/wordiest-api/docs"
 	"github.com/jtreeves/wordiest-api/pkg/handler"
 	"github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -32,7 +31,7 @@ func API() {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	e.GET("/docs", echoSwagger.WrapHandler)
+	e.GET("/docs/*", echoSwagger.WrapHandler)
 
 	e.GET("/words", func(c echo.Context) error {
 		return handler.GetWord(c)
