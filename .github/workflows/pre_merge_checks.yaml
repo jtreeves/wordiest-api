@@ -43,4 +43,4 @@ jobs:
       - name: Install dependencies
         run: go mod download
       - name: Build the API
-        run: go build -o bin/api ./cmd/api
+        run: go build -o bin/api
