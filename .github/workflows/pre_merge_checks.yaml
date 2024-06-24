@@ -3,57 +3,44 @@ on:
   pull_request:
     branches: [main]
 jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: Install dependencies
+        run: go mod download
+      - name: Check linting
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.59
   unit-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        id: flutter-action
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          architecture: x64
-      - name: Fix Flutter version
-        run: |
-          git config --global --add safe.directory /opt/hostedtoolcache/flutter/${{ steps.flutter-action.outputs.CHANNEL }}-${{ steps.flutter-action.outputs.VERSION }}-${{ steps.flutter-action.outputs.ARCHITECTURE }}
-          flutter --version
+          go-version: stable
       - name: Install dependencies
-        run: flutter pub get
+        run: go mod download
       - name: Run unit tests
-        run: flutter test test/unit_tests
-  widget-tests:
+        run: go test ./pkg/...
+  build-api:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        id: flutter-action
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          architecture: x64
-      - name: Fix Flutter version
-        run: |
-          git config --global --add safe.directory /opt/hostedtoolcache/flutter/${{ steps.flutter-action.outputs.CHANNEL }}-${{ steps.flutter-action.outputs.VERSION }}-${{ steps.flutter-action.outputs.ARCHITECTURE }}
-          flutter --version
+          go-version: stable
       - name: Install dependencies
-        run: flutter pub get
-      - name: Run widget tests
-        run: flutter test test/widget_tests
-  web-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        id: flutter-action
-        with:
-          architecture: x64
-      - name: Fix Flutter version
-        run: |
-          git config --global --add safe.directory /opt/hostedtoolcache/flutter/${{ steps.flutter-action.outputs.CHANNEL }}-${{ steps.flutter-action.outputs.VERSION }}-${{ steps.flutter-action.outputs.ARCHITECTURE }}
-          flutter --version
-      - name: Install dependencies
-        run: flutter pub get
-      - name: Build app for web
-        run: flutter build web
+        run: go mod download
+      - name: Build the API
+        run: go build -o bin/api ./cmd/api
