@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "RUNNING PRE COMMIT HOOK"
+
 golangci-lint run
 go vet ./...
 go fmt ./...
