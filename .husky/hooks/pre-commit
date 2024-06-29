@@ -1,6 +1,6 @@
 #!/bin/sh
 
-golangci-lint run
 go vet ./...
 go fmt ./...
 swag fmt
+golangci-lint run
