@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	_ "github.com/jtreeves/wordiest-api/docs"
-	"github.com/jtreeves/wordiest-api/pkg/handler"
+	"github.com/jtreeves/wordiest-api/pkg/handlers"
 	"github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
@@ -34,7 +34,7 @@ func main() {
 	e.GET("/docs/*", echoSwagger.WrapHandler)
 
 	e.GET("/words", func(c echo.Context) error {
-		return handler.GetWord(c)
+		return handlers.GetWord(c)
 	})
 
 	e.Logger.Fatal(e.Start(":1234"))

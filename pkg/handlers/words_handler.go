@@ -1,5 +1,5 @@
 // Handle API calls to various endpoints
-package handler
+package handlers
 
 import (
 	"net/http"
