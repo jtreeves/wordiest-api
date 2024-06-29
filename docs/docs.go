@@ -9,12 +9,7 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
-        "contact": {
-            "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
-        },
+        "contact": {},
         "license": {
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -26,7 +21,7 @@ const docTemplate = `{
     "paths": {
         "/words": {
             "get": {
-                "description": "Get single word",
+                "description": "Returns a random word from the database",
                 "consumes": [
                     "application/json"
                 ],
@@ -34,7 +29,7 @@ const docTemplate = `{
                     "text/plain"
                 ],
                 "tags": [
-                    "word"
+                    "words"
                 ],
                 "summary": "Get single word",
                 "responses": {
@@ -54,10 +49,10 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "localhost:1234",
-	BasePath:         "/api/v1",
+	BasePath:         "/api",
 	Schemes:          []string{},
-	Title:            "Echo Swagger Example API",
-	Description:      "This is a sample server.",
+	Title:            "Wordiest API",
+	Description:      "A simple API for receiving word data",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

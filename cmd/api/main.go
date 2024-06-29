@@ -9,21 +9,13 @@ import (
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
-//	@title			Echo Swagger Example API
-//	@version		1.0
-//	@description	This is a sample server.
-//	@termsOfService	http://swagger.io/terms/
-
-//	@contact.name	API Support
-//	@contact.url	http://www.swagger.io/support
-//	@contact.email	support@swagger.io
-
-//	@license.name	Apache 2.0
-//	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-
-//	@host		localhost:1234
-//	@BasePath	/api
-
+// @title Wordiest API
+// @version 1.0
+// @description A simple API for receiving word data
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host localhost:1234
+// @BasePath /api
 func main() {
 	e := echo.New()
 

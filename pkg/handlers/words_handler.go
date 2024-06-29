@@ -9,12 +9,12 @@ import (
 
 func RegisterWordsRoute(api *echo.Group) {
 	words := api.Group("/words")
-	words.GET("/", getWord)
+	words.GET("", getWord)
 }
 
 // @Summary Get single word
-// @Description Get single word
-// @Tags word
+// @Description Returns a random word from the database
+// @Tags words
 // @Accept json
 // @Produce plain
 // @Success 200	{string} string "word"

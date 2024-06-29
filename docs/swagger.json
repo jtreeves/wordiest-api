@@ -1,14 +1,9 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server.",
-        "title": "Echo Swagger Example API",
-        "termsOfService": "http://swagger.io/terms/",
-        "contact": {
-            "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
-        },
+        "description": "A simple API for receiving word data",
+        "title": "Wordiest API",
+        "contact": {},
         "license": {
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -16,11 +11,11 @@
         "version": "1.0"
     },
     "host": "localhost:1234",
-    "basePath": "/api/v1",
+    "basePath": "/api",
     "paths": {
         "/words": {
             "get": {
-                "description": "Get single word",
+                "description": "Returns a random word from the database",
                 "consumes": [
                     "application/json"
                 ],
@@ -28,7 +23,7 @@
                     "text/plain"
                 ],
                 "tags": [
-                    "word"
+                    "words"
                 ],
                 "summary": "Get single word",
                 "responses": {

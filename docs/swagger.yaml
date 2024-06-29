@@ -1,23 +1,19 @@
-basePath: /api/v1
+basePath: /api
 host: localhost:1234
 info:
-  contact:
-    email: support@swagger.io
-    name: API Support
-    url: http://www.swagger.io/support
-  description: This is a sample server.
+  contact: {}
+  description: A simple API for receiving word data
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: http://swagger.io/terms/
-  title: Echo Swagger Example API
+  title: Wordiest API
   version: "1.0"
 paths:
   /words:
     get:
       consumes:
       - application/json
-      description: Get single word
+      description: Returns a random word from the database
       produces:
       - text/plain
       responses:
@@ -27,5 +23,5 @@ paths:
             type: string
       summary: Get single word
       tags:
-      - word
+      - words
 swagger: "2.0"
