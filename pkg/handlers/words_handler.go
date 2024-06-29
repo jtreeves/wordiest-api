@@ -7,6 +7,11 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+func RegisterWordsRoute(api *echo.Group) {
+	words := api.Group("/words")
+	words.GET("/", getWord)
+}
+
 // @Summary Get single word
 // @Description Get single word
 // @Tags word
@@ -14,6 +19,6 @@ import (
 // @Produce plain
 // @Success 200	{string} string "word"
 // @Router /words [get]
-func GetWord(c echo.Context) error {
+func getWord(c echo.Context) error {
 	return c.String(http.StatusOK, "word")
 }

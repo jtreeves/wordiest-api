@@ -22,7 +22,7 @@ import (
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 
 //	@host		localhost:1234
-//	@BasePath	/api/v1
+//	@BasePath	/api
 
 func main() {
 	e := echo.New()
@@ -33,9 +33,9 @@ func main() {
 
 	e.GET("/docs/*", echoSwagger.WrapHandler)
 
-	e.GET("/words", func(c echo.Context) error {
-		return handlers.GetWord(c)
-	})
+	api := e.Group("/api")
+
+	handlers.RegisterWordsRoute(api)
 
 	e.Logger.Fatal(e.Start(":1234"))
 }

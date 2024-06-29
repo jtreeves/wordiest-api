@@ -15,7 +15,7 @@ func TestGetWord(t *testing.T) {
 	c := e.NewContext(req, rec)
 	expected := "word"
 
-	if err := GetWord(c); err != nil {
+	if err := getWord(c); err != nil {
 		t.Fatal(err)
 	}
 
