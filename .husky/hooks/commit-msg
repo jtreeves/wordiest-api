@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "RUNNING COMMIT MSG HOOK"
+
 commit_msg_file=$1
 
 commit_msg=$(cat $commit_msg_file)
