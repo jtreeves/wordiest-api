@@ -1,4 +1,4 @@
-package cmd
+package main
 
 import (
 	"net/http"
@@ -24,7 +24,7 @@ import (
 // @host localhost:1234
 // @BasePath /api/v1
 
-func API() {
+func main() {
 	e := echo.New()
 
 	e.GET("/", func(c echo.Context) error {

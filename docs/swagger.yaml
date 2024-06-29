@@ -1,4 +1,31 @@
+basePath: /api/v1
+host: localhost:1234
 info:
-  contact: {}
-paths: {}
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Echo Swagger Example API
+  version: "1.0"
+paths:
+  /words:
+    get:
+      consumes:
+      - application/json
+      description: Get single word
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: word
+          schema:
+            type: string
+      summary: Get single word
+      tags:
+      - word
 swagger: "2.0"
