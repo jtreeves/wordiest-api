@@ -1,0 +1,27 @@
+basePath: /api
+host: localhost:1234
+info:
+  contact: {}
+  description: A simple API for receiving word data
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Wordiest API
+  version: "1.0"
+paths:
+  /words:
+    get:
+      consumes:
+      - application/json
+      description: Returns a random word from the database
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: word
+          schema:
+            type: string
+      summary: Get single word
+      tags:
+      - words
+swagger: "2.0"
