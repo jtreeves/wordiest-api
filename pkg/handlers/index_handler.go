@@ -7,9 +7,8 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func RegisterWordsRoutes(api *echo.Group) {
-	words := api.Group("/words")
-	words.GET("", getWord)
+func RegisterIndexRoute(index *echo.Group) {
+	index.GET("", getIndex)
 }
 
 // @Summary Get single word
@@ -19,6 +18,6 @@ func RegisterWordsRoutes(api *echo.Group) {
 // @Produce plain
 // @Success 200	{string} string "word"
 // @Router /words [get]
-func getWord(c echo.Context) error {
-	return c.String(http.StatusOK, "word")
+func getIndex(c echo.Context) error {
+	return c.String(http.StatusOK, "Hello, World!")
 }

@@ -1,12 +1,9 @@
 package main
 
 import (
-	"net/http"
-
 	_ "github.com/jtreeves/wordiest-api/docs"
 	"github.com/jtreeves/wordiest-api/pkg/handlers"
 	"github.com/labstack/echo/v4"
-	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 // @title Wordiest API
@@ -18,16 +15,13 @@ import (
 // @BasePath /api
 func main() {
 	e := echo.New()
-
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
-
-	e.GET("/docs/*", echoSwagger.WrapHandler)
-
+	index := e.Group("/")
+	docs := e.Group("/docs")
 	api := e.Group("/api")
 
-	handlers.RegisterWordsRoute(api)
+	handlers.RegisterIndexRoute(index)
+	handlers.RegisterDocsRoutes(docs)
+	handlers.RegisterApiRoutes(api)
 
 	e.Logger.Fatal(e.Start(":1234"))
 }
