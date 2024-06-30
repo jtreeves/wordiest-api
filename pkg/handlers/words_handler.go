@@ -1,4 +1,3 @@
-// Handle API calls to various endpoints
 package handlers
 
 import (
