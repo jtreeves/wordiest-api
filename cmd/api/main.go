@@ -2,7 +2,7 @@ package main
 
 import (
 	_ "github.com/jtreeves/wordiest-api/docs"
-	"github.com/jtreeves/wordiest-api/pkg/handlers"
+	"github.com/jtreeves/wordiest-api/pkg/controller"
 	"github.com/labstack/echo/v4"
 )
 
@@ -19,9 +19,9 @@ func main() {
 	docs := e.Group("/docs")
 	api := e.Group("/api")
 
-	handlers.RegisterIndexRoute(index)
-	handlers.RegisterDocsRoutes(docs)
-	handlers.RegisterApiRoutes(api)
+	controller.RegisterMainIndexRoute(index)
+	controller.RegisterMainDocsRoutes(docs)
+	controller.RegisterMainApiRoutes(api)
 
 	e.Logger.Fatal(e.Start(":1234"))
 }
