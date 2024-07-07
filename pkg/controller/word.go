@@ -26,8 +26,8 @@ func (c *WordController) RegisterRoutes() {
 // @Description Returns a random word from the database
 // @Tags word
 // @Accept json
-// @Produce plain
-// @Success 200	{string} string "word"
+// @Produce json
+// @Success 200	{object} model.Response{data=model.Word}
 // @Router /word [get]
 func (c *WordController) Get(ctx echo.Context) error {
 	result := c.Service.Do()

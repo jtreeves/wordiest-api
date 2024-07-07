@@ -1,4 +1,20 @@
 basePath: /api
+definitions:
+  model.Response:
+    properties:
+      data: {}
+    type: object
+  model.Word:
+    properties:
+      id:
+        type: integer
+      length:
+        type: integer
+      letter:
+        type: string
+      value:
+        type: string
+    type: object
 host: localhost:1234
 info:
   contact: {}
@@ -15,13 +31,18 @@ paths:
       - application/json
       description: Returns a random word from the database
       produces:
-      - text/plain
+      - application/json
       responses:
         "200":
-          description: word
+          description: OK
           schema:
-            type: string
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.Word'
+              type: object
       summary: Get single word
       tags:
-      - words
+      - word
 swagger: "2.0"
