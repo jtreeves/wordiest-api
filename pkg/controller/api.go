@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/jtreeves/wordiest-api/pkg/service"
 	"github.com/labstack/echo/v4"
 )
 
@@ -19,8 +20,13 @@ func NewAPIController(e *echo.Echo) *APIController {
 
 func (c *APIController) RegisterRoutes() {
 	c.Group.GET("", c.Get)
+
+	ws := service.NewWordsService()
+	words := NewWordsController(c.Group, ws)
+
+	words.RegisterRoutes()
 }
 
 func (c *APIController) Get(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, "API")
+	return ctx.JSON(http.StatusBadRequest, "Invalid request")
 }
