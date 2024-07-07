@@ -19,26 +19,63 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/words": {
+        "/word": {
             "get": {
                 "description": "Returns a random word from the database",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/plain"
+                    "application/json"
                 ],
                 "tags": [
-                    "words"
+                    "word"
                 ],
                 "summary": "Get single word",
                 "responses": {
                     "200": {
-                        "description": "word",
+                        "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/model.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/model.Word"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.Response": {
+            "type": "object",
+            "properties": {
+                "data": {}
+            }
+        },
+        "model.Word": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "length": {
+                    "type": "integer"
+                },
+                "letter": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
                 }
             }
         }
