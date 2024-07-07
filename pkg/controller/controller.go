@@ -1,49 +1,46 @@
 package controller
 
 import (
-	"github.com/jtreeves/wordiest-api/pkg/configuration"
+	"net/http"
+
 	"github.com/jtreeves/wordiest-api/pkg/service"
+	"github.com/labstack/echo/v4"
 )
 
 type Controller interface {
-	Get(id string) string
+	RegisterRoutes()
+	Get(ctx echo.Context) error
 }
 
-type BaseController struct {
-	service service.Service
+type PrimitiveController struct {
+	Group *echo.Group
 }
 
-func (c *BaseController) Get(id string) string {
-	return c.service.Do()
+type CompositeController struct {
+	*PrimitiveController
+	Service service.Service
 }
 
-type WordsController struct {
-	*BaseController
+func NewPrimitiveController(g *echo.Group) *PrimitiveController {
+	return &PrimitiveController{Group: g}
 }
 
-type FeaturesController struct {
-	*BaseController
+func NewCompositeController(g *echo.Group, s service.Service) *CompositeController {
+	p := NewPrimitiveController(g)
+
+	return &CompositeController{PrimitiveController: p, Service: s}
 }
 
-func NewWordsController(service service.Service) *WordsController {
-	return &WordsController{BaseController: &BaseController{service: service}}
+func (c *PrimitiveController) RegisterRoutes() {
+	c.Group.GET("", c.Get)
 }
 
-func NewFeaturesController(service service.Service) *FeaturesController {
-	return &FeaturesController{BaseController: &BaseController{service: service}}
+func (c *PrimitiveController) Get(ctx echo.Context) error {
+	return ctx.JSON(http.StatusOK, "")
 }
 
-func New(controllerType string, service service.Service) Controller {
-	switch controllerType {
-	case configuration.WordsLabel:
-		return NewWordsController(service)
-	case configuration.FeaturesLabel:
-		return NewFeaturesController(service)
-	default:
-		return &BaseController{service: service}
-	}
-}
+func (c *CompositeController) Get(ctx echo.Context) error {
+	result := c.Service.Do()
 
-func (c *WordsController) GetAll() []string {
-	return []string{"a", "b", "c"}
+	return ctx.JSON(http.StatusOK, result)
 }

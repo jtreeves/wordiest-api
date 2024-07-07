@@ -8,5 +8,5 @@ type BaseService struct {
 }
 
 func (s *BaseService) Do() string {
-	return ""
+	return "base"
 }

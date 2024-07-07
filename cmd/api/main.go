@@ -3,6 +3,7 @@ package main
 import (
 	_ "github.com/jtreeves/wordiest-api/docs"
 	"github.com/jtreeves/wordiest-api/pkg/controller"
+	"github.com/jtreeves/wordiest-api/pkg/service"
 	"github.com/labstack/echo/v4"
 )
 
@@ -15,13 +16,18 @@ import (
 // @BasePath /api
 func main() {
 	e := echo.New()
-	index := e.Group("/")
-	docs := e.Group("/docs")
-	api := e.Group("/api")
 
-	controller.RegisterMainIndexRoute(index)
-	controller.RegisterMainDocsRoutes(docs)
-	controller.RegisterMainApiRoutes(api)
+	ws := service.NewWordsService()
+
+	index := controller.NewIndexController(e)
+	docs := controller.NewDocsController(e)
+	api := controller.NewApiController(e)
+	words := controller.NewWordsController(api.Group, ws)
+
+	index.RegisterRoutes()
+	docs.RegisterRoutes()
+	api.RegisterRoutes()
+	words.RegisterRoutes()
 
 	e.Logger.Fatal(e.Start(":1234"))
 }
