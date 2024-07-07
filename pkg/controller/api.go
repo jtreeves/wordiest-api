@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"net/http"
+
 	"github.com/labstack/echo/v4"
 )
 
@@ -16,5 +18,9 @@ func NewApiController(e *echo.Echo) *ApiController {
 }
 
 func (c *ApiController) RegisterRoutes() {
-	c.PrimitiveController.RegisterRoutes()
+	c.Group.GET("", c.Get)
+}
+
+func (c *ApiController) Get(ctx echo.Context) error {
+	return ctx.JSON(http.StatusOK, "API")
 }

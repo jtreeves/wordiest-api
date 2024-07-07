@@ -19,7 +19,7 @@ func NewDocsController(e *echo.Echo) *DocsController {
 }
 
 func (c *DocsController) RegisterRoutes() {
-	c.PrimitiveController.RegisterRoutes()
+	c.Group.GET("", c.Get)
 	c.Group.GET("/*", echoSwagger.WrapHandler)
 }
 
