@@ -6,21 +6,21 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type ApiController struct {
+type APIController struct {
 	*PrimitiveController
 }
 
-func NewApiController(e *echo.Echo) *ApiController {
+func NewAPIController(e *echo.Echo) *APIController {
 	g := e.Group("/api")
 	b := NewPrimitiveController(g)
 
-	return &ApiController{PrimitiveController: b}
+	return &APIController{PrimitiveController: b}
 }
 
-func (c *ApiController) RegisterRoutes() {
+func (c *APIController) RegisterRoutes() {
 	c.Group.GET("", c.Get)
 }
 
-func (c *ApiController) Get(ctx echo.Context) error {
+func (c *APIController) Get(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, "API")
 }

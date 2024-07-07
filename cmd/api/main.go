@@ -21,7 +21,7 @@ func main() {
 
 	index := controller.NewIndexController(e)
 	docs := controller.NewDocsController(e)
-	api := controller.NewApiController(e)
+	api := controller.NewAPIController(e)
 	words := controller.NewWordsController(api.Group, ws)
 
 	index.RegisterRoutes()
