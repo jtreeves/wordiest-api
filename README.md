@@ -3,17 +3,17 @@
 Run API:
 
 ```bash
-go run ./cmd/api
+go run ./cmd/server
 ```
 
 Create Swagger docs:
 
 ```bash
-swag init -g cmd/api/main.go
+swag init -g cmd/server/main.go
 ```
 
-Build API:
+Build server:
 
 ```bash
-go build -o bin/api ./cmd/api
+go build -o bin/server ./cmd/server
 ```

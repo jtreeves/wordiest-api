@@ -42,5 +42,5 @@ jobs:
           go-version: stable
       - name: Install dependencies
         run: go mod download
-      - name: Build the API
-        run: go build -o bin/api ./cmd/api
+      - name: Build the server
+        run: go build -o bin/server ./cmd/server
