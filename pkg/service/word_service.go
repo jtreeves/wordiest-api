@@ -10,6 +10,7 @@ func NewWordService() *WordService {
 	return &WordService{}
 }
 
+// Return single word as JSON
 func (s *WordService) Do() model.Response {
 	w := model.Word{
 		ID:     1,
