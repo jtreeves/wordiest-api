@@ -19,7 +19,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/words": {
+        "/word": {
             "get": {
                 "description": "Returns a random word from the database",
                 "consumes": [

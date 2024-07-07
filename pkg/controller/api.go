@@ -21,10 +21,10 @@ func NewAPIController(e *echo.Echo) *APIController {
 func (c *APIController) RegisterRoutes() {
 	c.Group.GET("", c.Get)
 
-	ws := service.NewWordsService()
-	words := NewWordsController(c.Group, ws)
+	ws := service.NewWordService()
+	word := NewWordController(c.Group, ws)
 
-	words.RegisterRoutes()
+	word.RegisterRoutes()
 }
 
 func (c *APIController) Get(ctx echo.Context) error {

@@ -13,7 +13,7 @@
     "host": "localhost:1234",
     "basePath": "/api",
     "paths": {
-        "/words": {
+        "/word": {
             "get": {
                 "description": "Returns a random word from the database",
                 "consumes": [

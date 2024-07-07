@@ -7,29 +7,29 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type WordsController struct {
+type WordController struct {
 	*CompositeController
 }
 
-func NewWordsController(e *echo.Group, s service.Service) *WordsController {
-	g := e.Group("/words")
+func NewWordController(e *echo.Group, s service.Service) *WordController {
+	g := e.Group("/word")
 	b := NewCompositeController(g, s)
 
-	return &WordsController{CompositeController: b}
+	return &WordController{CompositeController: b}
 }
 
-func (c *WordsController) RegisterRoutes() {
+func (c *WordController) RegisterRoutes() {
 	c.Group.GET("", c.Get)
 }
 
 // @Summary Get single word
 // @Description Returns a random word from the database
-// @Tags words
+// @Tags word
 // @Accept json
 // @Produce plain
 // @Success 200	{string} string "word"
-// @Router /words [get]
-func (c *WordsController) Get(ctx echo.Context) error {
+// @Router /word [get]
+func (c *WordController) Get(ctx echo.Context) error {
 	result := c.Service.Do()
 
 	return ctx.JSON(http.StatusOK, result)
